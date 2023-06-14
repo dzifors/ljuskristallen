@@ -2,7 +2,15 @@
 
 ## Development server
 
-First, ensure you have installed nodejs and npm on your machine, and you have git on it.
+First, ensure you have installed nodejs, npm, mysql and git on your machine.
+
+Then, set up a mysql user:
+
+```sql
+CREATE USER 'username'@'localhost' IDENTIFIED WITH 'password';
+GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost';
+FLUSH PRIVILEGES;
+```
 
 Then, clone the project:
 
@@ -12,6 +20,12 @@ git clone https://github.com/grafika-dzifors/ljuskristallen
 # Or, if you want to make changes to the project,
 # add your ssh key in github settings and clone using this command:
 git clone git@github.com:grafika-dzifors/ljuskristallen
+```
+
+Then, install the dependencies:
+
+```bash
+npm install
 ```
 
 Then, you can spin up a development server using this command:
