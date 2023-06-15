@@ -1,12 +1,16 @@
-import { Inter } from 'next/font/google'
-import { cn } from '~/lib/utils'
+import Head from 'next/head'
+import Layout from '~/components/layout'
+import Hero from '~/sections/hero'
 
-const inter = Inter({ subsets: ['latin'] })
-
-export default function Home() {
+const Home = () => {
   return (
-    <main className={cn(inter.className, 'max-w-screen-xl mx-auto')}>
-      Page under construction
-    </main>
+    <Layout>
+      <Head>
+        <title>Ljuskristallen</title>
+      </Head>
+      <Hero />
+    </Layout>
   )
 }
+
+export default Home
