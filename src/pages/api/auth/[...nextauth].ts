@@ -1,6 +1,6 @@
-import NextAuth, { NextAuthOptions, User } from 'next-auth'
-import CredentialsProvider from 'next-auth/providers/credentials'
 import axios from 'axios'
+import NextAuth, { NextAuthOptions } from 'next-auth'
+import CredentialsProvider from 'next-auth/providers/credentials'
 import { Credentials } from '~/types/auth'
 
 // For more information on each option (and a full list of options) go to
@@ -19,11 +19,23 @@ export const authOptions: NextAuthOptions = {
         password: {
           label: 'Password',
           placeholder: 'Password',
-          type: 'text'
+          type: 'password'
         }
       },
       async authorize(credentials) {
-        return { id: 1, username: 'dzifors', email: 'asda@asdas.pl' }
+        const { username, password } = credentials as Credentials
+
+        const { data } = await axios
+          .post('http://localhost:8000/auth/signin', {
+            username,
+            password
+          })
+          .catch(e => {
+            console.log(e)
+            throw new Error(e.response.data.error)
+          })
+
+        return data.data
       }
     })
   ],
