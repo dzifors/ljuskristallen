@@ -23,8 +23,8 @@ const Header = () => {
         <Link href="/prices" className="uppercase hover:underline">
           Priser
         </Link>
-        <Link href="/client" className="uppercase hover:underline">
-          Klient
+        <Link href="/team" className="uppercase hover:underline">
+          Team
         </Link>
         <Link href="/contact" className="uppercase hover:underline">
           Kontakta oss
