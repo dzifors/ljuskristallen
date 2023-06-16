@@ -6,6 +6,7 @@ const options = {
   semi: false,
   tabWidth: 2,
   trailingComma: 'none',
-  tailwindConfig: './tailwind.config.js'
+  tailwindConfig: './tailwind.config.js',
+  plugins: [require('prettier-plugin-tailwindcss')]
 }
 module.exports = options

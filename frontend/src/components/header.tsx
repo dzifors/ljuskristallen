@@ -3,8 +3,8 @@ import Link from 'next/link'
 
 const Header = () => {
   return (
-    <header className="w-screen flex justify-center items-center">
-      <nav className="flex gap-12 justify-center items-center">
+    <header className="flex w-screen items-center justify-center text-white">
+      <nav className="flex items-center justify-center gap-12">
         <Link href="/">
           <Image
             src="/images/logo.png"
@@ -29,8 +29,8 @@ const Header = () => {
         <Link href="/contact" className="uppercase hover:underline">
           Kontakta oss
         </Link>
-        <Link href="/special" className="uppercase hover:underline">
-          Special
+        <Link href="/auth/signin" className="uppercase hover:underline">
+          Login
         </Link>
       </nav>
     </header>
