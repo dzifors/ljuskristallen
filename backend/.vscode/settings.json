@@ -1,0 +1,10 @@
+{
+    "conventionalCommits.scopes": [
+        "routes/articles",
+        "routes/leaderboard",
+        "routes/routeNotFound",
+        "utils/database",
+        "utils/debug",
+        "constants"
+    ]
+}
