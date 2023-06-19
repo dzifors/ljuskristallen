@@ -9,7 +9,7 @@ const Prices = () => {
           <div key={`plan-${index}`}>
             <div className="flex h-full flex-col items-center overflow-auto rounded-lg bg-[purple] p-4 text-white">
               <span className="text-center text-xl">{plan.title}</span>
-              <span className="text-center text-2xl font-bold">
+              <span className="mb-2 text-center text-2xl font-bold">
                 {plan.price}
               </span>
               <span className="text-center">{plan.description}</span>
