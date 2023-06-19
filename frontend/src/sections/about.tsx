@@ -1,7 +1,7 @@
 const About = () => {
   return (
     <section
-      className="mx-auto mt-14 flex w-5/6 gap-4 bg-[auto_100%] bg-center bg-no-repeat p-24 text-black shadow-[0px_0px_10px_0px_purple]"
+      className="mx-auto my-14 flex w-5/6 gap-4 bg-[auto_100%] bg-center bg-no-repeat p-24 text-black shadow-[0px_0px_10px_0px_purple]"
       style={{ backgroundImage: 'url(/images/about.jpg)' }}
     >
       <div className="flex max-w-[50%] flex-col items-center justify-between">
