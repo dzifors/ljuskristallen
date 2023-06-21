@@ -34,12 +34,12 @@ const Contact = () => {
           />
           <textarea
             name="message"
-            className="h-14 w-1/3 rounded-full px-4 py-3"
+            className="h-32 w-1/3 resize-none rounded-3xl px-4 py-3"
             placeholder="Meddelande"
           />
           <button
             type="submit"
-            className="mb-10 rounded-full bg-[purple] px-6 py-4 text-white hover:bg-transparent hover:text-[purple] hover:outline hover:outline-[purple]"
+            className="mb-24 rounded-full bg-[purple] px-6 py-4 text-white hover:bg-transparent hover:text-[purple] hover:outline hover:outline-[purple]"
           >
             Skicka
           </button>
