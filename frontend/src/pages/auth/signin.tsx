@@ -27,7 +27,6 @@ const SigninPage = () => {
     e.preventDefault()
     signIn('credentials', { ...state, redirect: false }).then(response => {
       if (response?.error) {
-        console.log(response.error)
         toast.error(response.error)
       } else {
         router.push('/')
