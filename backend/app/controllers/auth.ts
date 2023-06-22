@@ -31,11 +31,10 @@ const signinHandler = (req: Request, res: Response) => {
           routeDebuggers.auth(`[POST][/signin] Couldnt find user ${username}`)
 
           return res
-            .status(410)
+            .status(401)
             .json({ success: false, error: 'User not found' })
         }
 
-        console.log(rows)
         const queryResult = rows[0]
         const { id, name, email } = queryResult
         const user = { id, name, email }

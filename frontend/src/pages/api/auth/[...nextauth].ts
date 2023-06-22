@@ -31,7 +31,6 @@ export const authOptions: NextAuthOptions = {
             password
           })
           .catch(e => {
-            console.log(e)
             throw new Error(e.response.data.error)
           })
 
