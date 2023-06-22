@@ -36,8 +36,9 @@ const signinHandler = (req: Request, res: Response) => {
         }
 
         const queryResult = rows[0]
-        const { id, name, email } = queryResult
-        const user = { id, name, email }
+        const { id, name, email, is_admin: isAdmin } = queryResult
+        const is_admin = isAdmin === 0 ? false : true
+        const user = { id, name, email, is_admin }
         return res.status(200).json({ success: true, data: user })
       }
     )
