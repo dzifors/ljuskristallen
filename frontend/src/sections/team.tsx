@@ -42,15 +42,11 @@ const Team = () => {
   return (
     <div className="my-48 flex h-[650px] flex-col items-center justify-center">
       <span className="text-3xl">Team</span>
-      <Carousel
-        className="dark"
-        leftControl={undefined}
-        rightControl={undefined}
-      >
+      <Carousel className="dark w-screen overflow-hidden">
         {teamMembers.map((member, index) => (
           <div
             key={`team-member-${index}`}
-            className="flex h-full w-3/5 items-center justify-center gap-6"
+            className="flex h-full w-[1024px] items-center justify-center gap-6"
           >
             <Image
               src={member.image}
