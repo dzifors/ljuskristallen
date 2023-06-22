@@ -27,10 +27,10 @@ const SigninPage = () => {
     e.preventDefault()
     signIn('credentials', { ...state, redirect: false }).then(response => {
       if (response?.error) {
-        toast.error(response.error)
+        toast.error(response.error, { duration: 1500 })
       } else {
         router.push('/')
-        toast.success('Welcome')
+        toast.success('Welcome', { duration: 1500 })
       }
     })
   }

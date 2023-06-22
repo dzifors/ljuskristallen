@@ -9,7 +9,7 @@ const SignoutPage = () => {
   const handleSignout = () => {
     signOut({ redirect: false }).then(() => {
       router.push('/')
-      toast.success('Signed out successfully')
+      toast.success('Signed out successfully', { duration: 1500 })
     })
   }
 
