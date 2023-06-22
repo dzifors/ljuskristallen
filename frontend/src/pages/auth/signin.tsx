@@ -1,6 +1,8 @@
 import { createHash } from 'crypto'
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import { FormEventHandler, useEffect, useReducer } from 'react'
+import { toast } from 'react-hot-toast'
 import Layout from '~/components/layout'
 
 type SigninState = {
@@ -11,6 +13,8 @@ type SigninState = {
 type SigninAction = { username: string } | { password: string }
 
 const SigninPage = () => {
+  const router = useRouter()
+
   const [state, dispatch] = useReducer(
     (oldState: SigninState, action: SigninAction) => ({
       ...oldState,
@@ -21,12 +25,16 @@ const SigninPage = () => {
 
   const handleSignin: FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault()
-    signIn('credentials', { ...state, callbackUrl: '/' })
+    signIn('credentials', { ...state, redirect: false }).then(response => {
+      if (response?.error) {
+        console.log(response.error)
+        toast.error(response.error)
+      } else {
+        router.push('/')
+        toast.success('Welcome')
+      }
+    })
   }
-
-  useEffect(() => {
-    console.log(state)
-  }, [state])
 
   const hashPassword = (password: string) => {
     const hash = createHash('md5')
