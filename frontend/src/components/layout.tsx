@@ -6,8 +6,10 @@ import { Toaster } from 'react-hot-toast'
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <>
-      <Hero />
-      {children}
+      <div className="min-h-screen">
+        <Hero />
+        {children}
+      </div>
       <Footer />
       <Toaster
         position="top-center"
