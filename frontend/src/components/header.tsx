@@ -1,7 +1,10 @@
+import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 const Header = () => {
+  const { data: session } = useSession()
+
   return (
     <header className="mx-auto flex items-center justify-center text-white">
       <nav className="flex items-center justify-center gap-12">
@@ -29,9 +32,21 @@ const Header = () => {
         <Link href="/contact" className="uppercase hover:underline">
           Kontakta oss
         </Link>
-        <Link href="/auth/signin" className="uppercase hover:underline">
-          Login
-        </Link>
+        {!session && (
+          <Link href="/auth/signin" className="uppercase hover:underline">
+            Login
+          </Link>
+        )}
+        {session?.user.is_admin && (
+          <Link href="/admin" className="uppercase hover:underline">
+            Admin panel
+          </Link>
+        )}
+        {session && (
+          <Link href="/auth/signout" className="uppercase hover:underline">
+            Logout
+          </Link>
+        )}
       </nav>
     </header>
   )
