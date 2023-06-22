@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="w-screen py-6 text-center">
+    <footer className="mx-auto py-6 text-center">
       Copyright &copy; 2023 Ljuskristallen. All rights reserved.
     </footer>
   )
