@@ -1,38 +1,3 @@
-/* import { useEffect, useState } from 'react'
-import { teamMembers } from '~/constants/team-members'
-
-const Team = () => {
-  const [currentMember, setCurrentMember] = useState<number>(0)
-
-  const carouselInfiniteScroll = () => {
-    if (currentMember === teamMembers.length - 1) {
-      return setCurrentMember(0)
-    }
-    return setCurrentMember(currentMember + 1)
-  }
-
-  useEffect(() => {
-    const interval = setInterval(() => carouselInfiniteScroll(), 3000)
-    return () => clearInterval(interval)
-  })
-
-  return (
-    <section>
-      <div className="flex flex-nowrap overflow-hidden">
-        <div
-          key={`team-member-${currentMember}`}
-          className="flex h-80 w-full min-w-full items-center justify-center transition duration-1000"
-        >
-          {ReactHtmlParser(teamMembers[currentMember].description)}
-        </div>
-      </div>
-      {currentMember}
-    </section>
-  )
-}
-
-export default Team */
-
 import { Carousel } from 'flowbite-react'
 import Image from 'next/image'
 import { teamMembers } from '~/constants/team-members'
@@ -42,11 +7,11 @@ const Team = () => {
   return (
     <div className="my-48 flex h-[650px] flex-col items-center justify-center">
       <span className="text-3xl">Team</span>
-      <Carousel className="dark w-screen overflow-hidden">
+      <Carousel className="dark max-w-screen-xl overflow-hidden">
         {teamMembers.map((member, index) => (
           <div
             key={`team-member-${index}`}
-            className="flex h-full w-[1024px] items-center justify-center gap-6"
+            className="flex h-full max-w-screen-lg items-center justify-center gap-6"
           >
             <Image
               src={member.image}
