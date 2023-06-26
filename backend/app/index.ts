@@ -1,13 +1,13 @@
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import debug from 'debug'
-import express, { Express } from 'express'
-import { appDebuggers, databaseDebuggers } from '../utils/debug'
-import rootRouter from './routes/root'
-import databaseConnection from '../utils/database'
-import routeNotFound from './routes/routeNotFound'
-import { requestTimeMiddleware } from '../utils/timing'
 import dotenv from 'dotenv'
+import express, { Express } from 'express'
+import databaseConnection from '../utils/database'
+import { appDebuggers, databaseDebuggers } from '../utils/debug'
+import { requestTimeMiddleware } from '../utils/timing'
+import rootRouter from './routes/root'
+import routeNotFound from './routes/routeNotFound'
 
 dotenv.config()
 
