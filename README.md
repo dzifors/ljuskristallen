@@ -19,6 +19,6 @@ After that, go and read these two documents:
 
 - [x] Page layout
 - [x] User authentication
-- [ ] Contact form
+- [x] Contact form
 - [ ] Booking system
 - [ ] Admin panel
