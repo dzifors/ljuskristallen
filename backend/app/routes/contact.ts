@@ -1,7 +1,9 @@
 import express from 'express'
-import { submitContactForm } from '../controllers/contact'
+import { getAllMessages, submitContactForm } from '../controllers/contact'
 
 const contactRouter = express.Router()
+
+contactRouter.get('/', getAllMessages)
 
 contactRouter.post('/', submitContactForm)
 

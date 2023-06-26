@@ -29,4 +29,21 @@ const submitContactForm = (req: Request, res: Response) => {
   }
 }
 
-export { submitContactForm }
+const getAllMessages = (req: Request, res: Response) => {
+  databaseConnection.query(
+    'SELECT * FROM contact WHERE status="unfinished" LIMIT 5; SELECT COUNT(*) count FROM contact WHERE status="unfinished"; SELECT COUNT(*) count FROM contact',
+    (error, results) => {
+      if (error) throw error
+      const messages = results[0]
+      const unfinished_messages_count = results[1][0]['count']
+      const all_messages_count = results[2][0]['count']
+
+      res.status(200).json({
+        success: true,
+        data: { messages, unfinished_messages_count, all_messages_count }
+      })
+    }
+  )
+}
+
+export { submitContactForm, getAllMessages }
