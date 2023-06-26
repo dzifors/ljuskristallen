@@ -13,7 +13,7 @@ const submitContactForm = (req: Request, res: Response) => {
     })
 
     databaseConnection.query(
-      'INSERT INTO contact (name, email, phone, message) VALUES ("?", "?", "?", "?")',
+      'INSERT INTO contact (name, email, phone, message, status) VALUES (?, ?, ?, ?, "unfinished")',
       [
         requestData.name,
         requestData.email,
