@@ -22,6 +22,8 @@ const Messages = ({ status }: { status?: 'finished' | 'unfinished' }) => {
     ? data?.messages.filter(value => value.status === status) || []
     : data?.messages || []
 
+  if (messages.length === 0) return <span>No messages found</span>
+
   return (
     <Table hoverable className="w-full">
       <Table.Head className="w-full">
