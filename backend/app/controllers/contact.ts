@@ -1,7 +1,10 @@
 import { Request, Response } from 'express'
-import databaseConnection from '../../utils/database'
-import { ContactMessageSchema } from '../../validators/contact'
 import { ValidationError } from 'yup'
+import databaseConnection from '../../utils/database'
+import {
+  ChangeMessageStatusSchema,
+  ContactMessageSchema
+} from '../../validators/contact'
 
 const submitContactForm = (req: Request, res: Response) => {
   const requestBody = req.body
@@ -19,10 +22,12 @@ const submitContactForm = (req: Request, res: Response) => {
         requestData.email,
         requestData.phone,
         requestData.message
-      ]
+      ],
+      error => {
+        if (error) throw error
+        res.status(200).send()
+      }
     )
-
-    res.status(200).send()
   } catch (e) {
     const error = e as ValidationError
     res.send(error.errors)
@@ -30,20 +35,31 @@ const submitContactForm = (req: Request, res: Response) => {
 }
 
 const getAllMessages = (req: Request, res: Response) => {
-  databaseConnection.query(
-    'SELECT * FROM contact WHERE status="unfinished" LIMIT 5; SELECT COUNT(*) count FROM contact WHERE status="unfinished"; SELECT COUNT(*) count FROM contact',
-    (error, results) => {
-      if (error) throw error
-      const messages = results[0]
-      const unfinished_messages_count = results[1][0]['count']
-      const all_messages_count = results[2][0]['count']
+  databaseConnection.query('SELECT * FROM contact', (error, rows) => {
+    if (error) throw error
+    res.status(200).json({ success: true, data: rows })
+  })
+}
 
-      res.status(200).json({
-        success: true,
-        data: { messages, unfinished_messages_count, all_messages_count }
-      })
+const changeMessageStatus = (req: Request, res: Response) => {
+  const { id } = req.params
+  const { new_status } = req.query
+  console.log(req.query)
+
+  const newStatus = ChangeMessageStatusSchema.validateSync(new_status, {
+    abortEarly: false,
+    stripUnknown: true
+  })
+
+  databaseConnection.query(
+    'UPDATE contact SET status=? WHERE id=?',
+    [newStatus, id],
+    error => {
+      if (error) throw error
+
+      res.status(200).json({ success: true })
     }
   )
 }
 
-export { submitContactForm, getAllMessages }
+export { submitContactForm, getAllMessages, changeMessageStatus }

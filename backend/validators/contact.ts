@@ -7,4 +7,6 @@ const ContactMessageSchema = object({
   message: string().trim().required()
 }).required()
 
-export { ContactMessageSchema }
+const ChangeMessageStatusSchema = string().matches(/^(finished|unfinished)$/)
+
+export { ContactMessageSchema, ChangeMessageStatusSchema }
