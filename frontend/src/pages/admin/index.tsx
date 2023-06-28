@@ -21,7 +21,10 @@ const AdminPage = () => {
     const credentials = { ...values, password: hashedPassword }
 
     axios
-      .post('http://localhost:8000/auth/signin', credentials)
+      .post(
+        `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/auth/signin`,
+        credentials
+      )
       .then(({ data }) => {
         if (data.data.is_admin === true) {
           router.push('/admin/dashboard')

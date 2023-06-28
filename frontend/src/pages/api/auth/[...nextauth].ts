@@ -26,7 +26,7 @@ export const authOptions: NextAuthOptions = {
         const { username, password } = credentials as Credentials
 
         const { data } = await axios
-          .post('http://localhost:8000/auth/signin', {
+          .post(`${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/auth/signin`, {
             username,
             password
           })

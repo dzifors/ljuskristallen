@@ -12,7 +12,7 @@ type FormValues = {
 const Contact = () => {
   const handleSubmit = async (values: FormValues) => {
     axios
-      .post('http://localhost:8000/contact', values)
+      .post(`${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/contact`, values)
       .then(({ data, status }) => {
         if (status === 200) toast.success('Message sent successfully')
         else toast.error(`Sending failed: ${data.response.data}`)
