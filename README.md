@@ -4,7 +4,7 @@ Website and backend made in Sweden
 
 Make sure you have installed:
 
-- nodejs (preferrably the LTS version) -> [How to install on Ubuntu](INSTALLING_NODE.md)
+- nodejs (preferably the LTS version) -> [How to install on Ubuntu](INSTALLING_NODE.md)
 - npm
 - MySQL
 - Git
@@ -21,4 +21,4 @@ After that, go and read these two documents:
 - [x] User authentication
 - [x] Contact form
 - [ ] Booking system
-- [ ] Admin panel
+- [x] Admin panel
