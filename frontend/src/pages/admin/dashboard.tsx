@@ -1,66 +1,58 @@
 import axios from 'axios'
 import { GetServerSideProps } from 'next'
+import { createContext } from 'react'
+import AdminNav from '~/components/admin-nav'
 import Layout from '~/components/layout'
+import useAdminData from '~/hooks/use-admin-data'
+import { ContactMessage } from '~/types/contact'
+import { User } from '~/types/users'
 
-type ContactMessage = {
-  id: number
-  name: string
-  email: string
-  phone: string
-  message: string
-}
-
-type Props = {
-  unfinishedMessagesCount: number
-  allMessagesCount: number
+export type AdminProps = {
+  users: User[]
   messages: ContactMessage[]
 }
 
-const getServerSideProps: GetServerSideProps = async () => {
-  const { data } = await axios.get('http://localhost:8000/contact')
-  const unfinishedMessagesCount = data.data.unfinished_messages_count
-  const allMessagesCount = data.data.all_messages_count
-  const messages = data.data.messages
+export const AdminContext = createContext<AdminProps>({
+  users: [],
+  messages: []
+})
 
-  return {
-    props: {
-      unfinishedMessagesCount,
-      messages,
-      allMessagesCount
-    }
-  }
+const getServerSideProps: GetServerSideProps = async () => {
+  const { data: messagesRes } = await axios.get(
+    `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/contact`
+  )
+
+  const { data: usersRes } = await axios.get(
+    `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}/users`
+  )
+
+  const messages = messagesRes.data
+  const users = usersRes.data
+
+  return { props: { users, messages } }
 }
 
-const AdminDashboard = ({
-  unfinishedMessagesCount,
-  allMessagesCount,
-  messages
-}: Props) => {
+const AdminDashboard = () => {
+  const { data, isLoading } = useAdminData()
+
+  const unfinishedMessages = data?.messages.filter(
+    value => value.status === 'unfinished'
+  )
+
   return (
     <Layout>
-      <span>
-        Unhandled/all messages: {unfinishedMessagesCount}/{allMessagesCount}
-      </span>
-      <table>
-        <thead>
-          <tr>
-            <td>Name</td>
-            <td>Email</td>
-            <td>Phone number</td>
-            <td>Message</td>
-          </tr>
-        </thead>
-        <tbody>
-          {messages.map((message, index) => (
-            <tr key={`message-${index}`}>
-              <td>{message.name}</td>
-              <td>{message.email}</td>
-              <td>{message.phone}</td>
-              <td>{message.message}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <section className="mx-auto flex max-w-screen-xl flex-col items-center justify-center gap-6 pt-4">
+        <AdminNav />
+        {isLoading ? (
+          'loading'
+        ) : (
+          <>
+            <span>User count: {data?.users.length}</span>
+            <span>All messages: {data?.messages.length}</span>
+            <span>Unfinished messages: {unfinishedMessages?.length}</span>
+          </>
+        )}
+      </section>
     </Layout>
   )
 }
