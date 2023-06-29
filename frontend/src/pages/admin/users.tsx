@@ -48,7 +48,7 @@ const UsersPage = () => {
                   <Table.Cell>{user.id}</Table.Cell>
                   <Table.Cell>{user.name}</Table.Cell>
                   <Table.Cell>{user.email}</Table.Cell>
-                  <Table.Cell>{user.is_admin}</Table.Cell>
+                  <Table.Cell>{user.is_admin === 0 ? 'No' : 'Yes'}</Table.Cell>
                   <Table.Cell>
                     {user.is_admin ? (
                       <button
