@@ -2,5 +2,5 @@ export type User = {
   id: number
   name: string
   email: string
-  is_admin: boolean
+  is_admin: 0 | 1
 }
